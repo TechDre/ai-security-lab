@@ -150,6 +150,17 @@ This lab supports understanding of **[LLM06: Excessive Agency](https://owasp.org
 
 ---
 
+## Defensive Recommendations
+
+1. **Baseline your network traffic** — run captures regularly to understand what's normal; anomalies become obvious against a clean baseline
+2. **Monitor DNS queries** — unexpected outbound DNS is one of the fastest ways to detect C2 beaconing or exfiltration
+3. **Watch for MDNS/mDNS broadcasts** — passive enumeration of your network is a common first step in lateral movement
+4. **Segment IoT and smart home devices** — devices visible via MDNS should be on an isolated VLAN, not your main LAN
+5. **Enable ARP inspection** — dynamic ARP inspection (DAI) on managed switches prevents ARP spoofing and MITM attacks
+6. **Set up automated alerting** — use tools like Zeek or Suricata to alert on anomalous traffic patterns in real time
+
+---
+
 ## Commands Reference
 
 ```bash
