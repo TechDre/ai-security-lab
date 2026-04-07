@@ -5,7 +5,7 @@
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 ![Security](https://img.shields.io/badge/Focus-AI%20Security-red?logo=shield)
 
-> A hands-on engineering lab for learning AI security — covering prompt injection detection, LLM guardrails, PII redaction, output filtering, network traffic analysis, and supply chain security.
+> A hands-on engineering lab for learning AI security — covering prompt injection detection, LLM guardrails, PII redaction, output filtering, network traffic analysis, supply chain security, and excessive agency.
 
 ## Overview
 
@@ -17,25 +17,26 @@ The AI Security Lab is a collection of practical, self-contained labs focused on
 | Lab 2 | LLM Guardrails Pipeline | Input/output validation, PII redaction, custom content policy |
 | Lab 3 | Network Traffic Analysis | Packet capture, protocol analysis, security observation |
 | Lab 4 | Supply Chain Security | Dependency auditing, CVE identification, patching |
+| Lab 5 | Excessive Agency | Least privilege, allowlists, audit logging, agent hardening |
 
 ## Repository Structure
 
 ```
 ai-security-lab/
-├── agent.py                    # Lab 1 — Prompt injection detector
-├── test_prompts.txt            # Lab 1 — Sample attack prompts
-├── GUIDE.md                    # Lab 1 — Full setup & usage guide
+├── agent.py                  # Lab 1 — Prompt injection detector
+├── test_prompts.txt          # Lab 1 — Sample attack prompts
+├── GUIDE.md                  # Lab 1 — Full setup & usage guide
 ├── llm-guardrails-lab/
-│   ├── agent.py                # Lab 2 — Guardrails pipeline
-│   ├── test_inputs.txt         # Lab 2 — Sample inputs (safe + malicious)
-│   └── GUIDE.md                # Lab 2 — Full setup & usage guide
+│   ├── agent.py              # Lab 2 — Guardrails pipeline
+│   ├── test_inputs.txt       # Lab 2 — Sample inputs (safe + malicious)
+│   └── GUIDE.md              # Lab 2 — Full setup & usage guide
 ├── lab3-network-analysis/
-│   └── README.md               # Lab 3 — Network traffic analysis write-up
-└── lab4-supply-chain/
-    └── README.md               # Lab 4 — Supply chain security write-up
+│   └── README.md             # Lab 3 — Network traffic analysis write-up
+├── lab4-supply-chain/
+│   └── README.md             # Lab 4 — Supply chain security write-up
+└── lab5-excessive-agency/
+    └── README.md             # Lab 5 — Excessive agency write-up
 ```
-
----
 
 ## Lab 1 — Prompt Injection Detection
 
@@ -74,9 +75,9 @@ Regex Score   : 0.5000   Matches: [system_prompt_override]
 Heuristic     : 0.3009
 Classifier    : INJECTION (1.0000)
 Detection Time : 144.73 ms
-```
 
-Score guide: `0.0–0.3` safe · `0.3–0.5` suspicious · `0.5–1.0` injection detected
+Score guide: 0.0–0.3 safe · 0.3–0.5 suspicious · 0.5–1.0 injection detected
+```
 
 ### Attack Patterns Detected
 
@@ -102,26 +103,26 @@ Full setup guide: [GUIDE.md](GUIDE.md)
 
 ```
 User Input
-    │
-    ▼
+│
+▼
 [Length Guard]     ← Blocks oversized inputs
-    │
-    ▼
+│
+▼
 [Injection Guard]  ← Blocks prompt injections & jailbreaks
-    │
-    ▼
+│
+▼
 [Content Policy]   ← Blocks harmful or off-topic requests
-    │
-    ▼
+│
+▼
 [PII Guard]        ← Strips SSNs, emails, credit cards, API keys
-    │
-    ▼
+│
+▼
 LLM API            ← Receives only clean, sanitized input
-    │
-    ▼
+│
+▼
 [Output Guard]     ← Catches system prompt leakage & PII in responses
-    │
-    ▼
+│
+▼
 User Response      ← Safe, redacted output
 ```
 
@@ -143,7 +144,7 @@ python llm-guardrails-lab/agent.py --file llm-guardrails-lab/test_inputs.txt --m
 ### PII Redaction Reference
 
 | PII Type | Example Input | Replaced With |
-|----------|--------------|---------------|
+|----------|---------------|---------------|
 | US SSN | 123-45-6789 | [SSN_REDACTED] |
 | Email | user@example.com | [EMAIL_REDACTED] |
 | Credit Card | 4111 1111 1111 1111 | [CARD_REDACTED] |
@@ -191,23 +192,33 @@ See the full write-up in [lab4-supply-chain/README.md](lab4-supply-chain/README.
 
 ---
 
+## Lab 5 — Excessive Agency
+
+**Goal:** Demonstrate OWASP LLM06 (Excessive Agency) by building an unsafe agent that can be manipulated via prompt injection, then hardening it with least privilege, input validation, and audit logging.
+
+See the full write-up in [lab5-excessive-agency/README.md](lab5-excessive-agency/README.md).
+
+---
+
 ## Prerequisites
 
 | Lab | Python Version | External Dependencies |
-|-----|---------------|----------------------|
+|-----|---------------|-----------------------|
 | Lab 1 | 3.10+ | transformers, torch, sentencepiece, protobuf |
 | Lab 2 | 3.10+ | None — pure Python stdlib |
 | Lab 3 | N/A | TShark 4.4.6+, Kali Linux (or WSL) |
 | Lab 4 | 3.10+ | pip-audit |
+| Lab 5 | 3.10+ | None — pure Python stdlib |
 
 ## Learning Path
 
 This lab is designed as a progressive curriculum in AI security engineering:
 
-- **Lab 1 — Prompt Injection Detection** — Understand and detect adversarial inputs
-- **Lab 2 — LLM Guardrails Pipeline** — Build a full input/output defense layer
-- **Lab 3 — Network Traffic Analysis** — Monitor for unexpected LLM agent connections
-- **Lab 4 — Supply Chain Security** — Audit and patch vulnerable dependencies
+- **Lab 1** — Prompt Injection Detection — Understand and detect adversarial inputs
+- **Lab 2** — LLM Guardrails Pipeline — Build a full input/output defense layer
+- **Lab 3** — Network Traffic Analysis — Monitor for unexpected LLM agent connections
+- **Lab 4** — Supply Chain Security — Audit and patch vulnerable dependencies
+- **Lab 5** — Excessive Agency — Harden agents with least privilege and audit logging
 
 Coming next: Malware Behavior Analysis with Cuckoo Sandbox
 
