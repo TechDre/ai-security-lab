@@ -280,6 +280,15 @@ Desktop/llm-guardrails-lab/
 
 ---
 
+## OWASP LLM Relevance
+
+This lab directly demonstrates **OWASP LLM01: Prompt Injection** and **OWASP LLM06: Sensitive Information Disclosure**:
+
+- The Injection Guard layer blocks OWASP LLM01 attacks — prompt injections and jailbreaks that attempt to override system instructions
+- The PII Guard layer mitigates OWASP LLM06 — preventing sensitive personal data from reaching the LLM or leaking in its responses
+- The Output Guard layer adds a final check for LLM06, catching any PII or system prompt leakage that makes it into the model's output
+- Together, these layers implement a defense-in-depth strategy aligned with OWASP Top 10 for LLM Applications
+
 ## Next Steps
 
 With prompt injection detection (Lab 1) and LLM guardrails (Lab 2) done, the next skill is:
