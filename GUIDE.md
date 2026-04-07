@@ -208,6 +208,14 @@ Desktop/prompt-injection-lab/
 
 ---
 
+## OWASP LLM Relevance
+
+This lab directly demonstrates **OWASP LLM01: Prompt Injection** — the top risk in the OWASP Top 10 for LLM Applications:
+
+- Direct prompt injection attacks attempt to override system instructions and hijack LLM behavior
+- The multi-layer detection architecture (regex → heuristic → classifier) mirrors a defense-in-depth strategy
+- Catching injections at the input layer prevents downstream exploits such as data exfiltration, jailbreaking, and privilege escalation
+
 ## Next Steps
 
 Once comfortable with prompt injection detection, the next skill to learn is:
