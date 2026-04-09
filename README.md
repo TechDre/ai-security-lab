@@ -7,110 +7,108 @@ A hands-on AI security engineering learning lab covering prompt injection detect
 ## Table of Contents
 
 - [Overview](#overview)
-- - [Labs](#labs)
-  -   - [OWASP Coverage](#owasp-coverage)
-      -   - [Prerequisites](#prerequisites)
-          -   - [Repository Structure](#repository-structure)
-           
-              - ## Overview
-           
-              - This lab series builds practical AI security engineering skills by demonstrating real attack techniques and their defenses. Each lab targets a specific OWASP LLM risk, includes working code, and documents findings with security observations and defensive recommendations.
-           
-              - ## Labs
-           
-              - | Lab | Topic | OWASP Reference | Folder |
-              - |-----|-------|-----------------|--------|
-              - | [Lab 1](GUIDE.md) | Prompt Injection Detection | LLM01 | GUIDE.md |
-              - | [Lab 2](llm-guardrails-lab/) | LLM Guardrails (Input/Output Validation) | LLM01, LLM06 | llm-guardrails-lab/ |
-              - | [Lab 3](lab3-network-analysis/) | Network Traffic Analysis with TShark | LLM06 | lab3-network-analysis/ |
-              - | [Lab 4](lab4-supply-chain/) | Supply Chain Security with pip-audit | LLM03 | lab4-supply-chain/ |
-              - | [Lab 5](lab5-excessive-agency/) | Excessive Agency | LLM06 | lab5-excessive-agency/ |
-              - | [Lab 6](lab6-vector-security/) | Vector/Embedding Security (RAG Poisoning) | LLM08 | lab6-vector-security/ |
-              - | [Lab 7](lab7-data-extraction/) | Model Inversion & Data Extraction | LLM02 | lab7-data-extraction/ |
-              - | [Lab 8](lab8-insecure-output/) | Insecure Output Handling | LLM02 | lab8-insecure-output/ |
-              - | [Lab 9](lab9-model-dos/) | Model Denial of Service | LLM04 | lab9-model-dos/ |
-              - | [Lab 10](lab10-insecure-plugins/) | Insecure Plugin/Tool Use | LLM07 | lab10-insecure-plugins/ |
-              - | [Lab 11](lab11-claude-api/) | Claude API Basics (Anthropic SDK) | — | lab11-claude-api/ |
-              - | [Lab 12](lab12-rag-pipline/) | RAG Pipeline with Claude API | LLM01, LLM02, LLM07, LLM08 | lab12-rag-pipline/ |
-           
-              - ---
+- [Labs](#labs)
+  - [OWASP Coverage](#owasp-coverage)
+  - [Prerequisites](#prerequisites)
+  - [Repository Structure](#repository-structure)
 
-              **Lab 1 — Prompt Injection Detection (OWASP LLM01)**
-              Multi-layered prompt injection detector using regex pattern matching, heuristic scoring, and a DeBERTa AI classifier. Detects system prompt overrides, role-play escapes, jailbreaks, and data exfiltration attempts with 99%+ accuracy.
+## Overview
 
-              **Lab 2 — LLM Guardrails (OWASP LLM01, LLM06)**
-              A 5-layer input/output validation pipeline sitting between the user and an LLM. Guards against prompt injection, harmful content, and PII exposure — with output filtering to catch system prompt leakage in model responses.
+This lab series builds practical AI security engineering skills by demonstrating real attack techniques and their defenses. Each lab targets a specific OWASP LLM risk, includes working code, and documents findings with security observations and defensive recommendations.
 
-              **Lab 3 — Network Traffic Analysis (OWASP LLM06)**
-              Captures and analyzes live network traffic with TShark to identify protocols, establish baselines, and detect security anomalies. Demonstrates how LLM agent network activity (C2 beaconing, exfiltration) would appear in DNS and TCP traffic.
+## Labs
 
-              **Lab 4 — Supply Chain Security (OWASP LLM03)**
-              Audits a Python project with vulnerable dependencies using pip-audit, identifies 27 CVEs across 6 packages (including transitive dependencies), and patches to a clean state. Demonstrates the hidden risk of unpinned and unaudited packages in AI application stacks.
+| Lab | Topic | OWASP Reference | Folder |
+|-----|-------|-----------------|--------|
+| [Lab 1](GUIDE.md) | Prompt Injection Detection | LLM01 | GUIDE.md |
+| [Lab 2](llm-guardrails-lab/) | LLM Guardrails (Input/Output Validation) | LLM01, LLM06 | llm-guardrails-lab/ |
+| [Lab 3](lab3-network-analysis/) | Network Traffic Analysis with TShark | LLM06 | lab3-network-analysis/ |
+| [Lab 4](lab4-supply-chain/) | Supply Chain Security with pip-audit | LLM03 | lab4-supply-chain/ |
+| [Lab 5](lab5-excessive-agency/) | Excessive Agency | LLM06 | lab5-excessive-agency/ |
+| [Lab 6](lab6-vector-security/) | Vector/Embedding Security (RAG Poisoning) | LLM08 | lab6-vector-security/ |
+| [Lab 7](lab7-data-extraction/) | Model Inversion & Data Extraction | LLM02 | lab7-data-extraction/ |
+| [Lab 8](lab8-insecure-output/) | Insecure Output Handling | LLM02 | lab8-insecure-output/ |
+| [Lab 9](lab9-model-dos/) | Model Denial of Service | LLM04 | lab9-model-dos/ |
+| [Lab 10](lab10-insecure-plugins/) | Insecure Plugin/Tool Use | LLM07 | lab10-insecure-plugins/ |
+| [Lab 11](lab11-claude-api/) | Claude API Basics (Anthropic SDK) | — | lab11-claude-api/ |
+| [Lab 12](lab12-rag-pipline/) | RAG Pipeline with Claude API | LLM01, LLM02, LLM07, LLM08 | lab12-rag-pipline/ |
 
-              **Lab 5 — Excessive Agency (OWASP LLM06)**
-              Builds an unsafe agent vulnerable to shell injection, then a safe agent with command allowlisting, input validation, and audit logging. Demonstrates how least-privilege principles and layered defenses block prompt injection attacks that reach the agent layer.
+**Lab 1 — Prompt Injection Detection (OWASP LLM01)**
+Multi-layered prompt injection detector using regex pattern matching, heuristic scoring, and a DeBERTa AI classifier. Detects system prompt overrides, role-play escapes, jailbreaks, and data exfiltration attempts with 99%+ accuracy.
 
-              **Lab 6 — Vector/Embedding Security (OWASP LLM08)**
-              Builds a simple RAG system, executes a keyword-stuffing vector poisoning attack that hijacks query results, and implements trusted source filtering as a defense. Shows how RAG knowledge bases are an attack surface when write access is not controlled.
+**Lab 2 — LLM Guardrails (OWASP LLM01, LLM06)**
+A 5-layer input/output validation pipeline sitting between the user and an LLM. Guards against prompt injection, harmful content, and PII exposure — with output filtering to catch system prompt leakage in model responses.
 
-              **Lab 7 — Model Inversion & Data Extraction (OWASP LLM02)**
-              Simulates system prompt extraction and sensitive data leakage attacks against an unsafe LLM handler. Demonstrates that a single extraction phrase can dump the entire injected context — including credentials and PII — and builds three-layered defenses: input filtering, sensitive data blocklisting, and regex-based output scanning.
+**Lab 3 — Network Traffic Analysis (OWASP LLM06)**
+Captures and analyzes live network traffic with TShark to identify protocols, establish baselines, and detect security anomalies. Demonstrates how LLM agent network activity (C2 beaconing, exfiltration) would appear in DNS and TCP traffic.
 
-              **Lab 8 — Insecure Output Handling (OWASP LLM02)**
-              Shows how unsanitized LLM output becomes a delivery mechanism for XSS, SQL injection, and command injection attacks against downstream systems. Implements per-system defenses — HTML escaping, SQL sanitization, and shell metachar stripping — and demonstrates why every integration point requires its own output controls.
+**Lab 4 — Supply Chain Security (OWASP LLM03)**
+Audits a Python project with vulnerable dependencies using pip-audit, identifies 27 CVEs across 6 packages (including transitive dependencies), and patches to a clean state. Demonstrates the hidden risk of unpinned and unaudited packages in AI application stacks.
 
-              **Lab 9 — Model Denial of Service (OWASP LLM04)**
-              Simulates resource exhaustion attacks against an unsafe LLM handler — oversized inputs, repetitive patterns, and request flooding — then implements five layered defenses: input length limiting, token limiting, repetition detection, rate limiting, and cost tracking. Demonstrates that LLM DoS is financial as well as operational, with a single crafted request costing orders of magnitude more than a normal one.
+**Lab 5 — Excessive Agency (OWASP LLM06)**
+Builds an unsafe agent vulnerable to shell injection, then a safe agent with command allowlisting, input validation, and audit logging. Demonstrates how least-privilege principles and layered defenses block prompt injection attacks that reach the agent layer.
 
-              **Lab 10 — Insecure Plugin/Tool Use (OWASP LLM07)**
-              Demonstrates attacks against unsecured LLM tools (web search, code executor, email sender) — malicious result injection, system command execution, and unauthorized data exfiltration — then implements per-tool defenses: output scanning, blocked pattern lists, and domain allowlisting. Shows that securing the LLM itself is not enough; every tool integration point requires its own validation layer.
+**Lab 6 — Vector/Embedding Security (OWASP LLM08)**
+Builds a simple RAG system, executes a keyword-stuffing vector poisoning attack that hijacks query results, and implements trusted source filtering as a defense. Shows how RAG knowledge bases are an attack surface when write access is not controlled.
 
-              **Lab 11 — Claude API Basics (Anthropic SDK)**
-              Builds a working Claude API integration using the Anthropic SDK. Demonstrates single message requests, multi-turn conversations with system prompts, and structured output for security analysis. Covers token usage tracking and cost estimation — the foundation for all subsequent API-based labs.
+**Lab 7 — Model Inversion & Data Extraction (OWASP LLM02)**
+Simulates system prompt extraction and sensitive data leakage attacks against an unsafe LLM handler. Demonstrates that a single extraction phrase can dump the entire injected context — including credentials and PII — and builds three-layered defenses: input filtering, sensitive data blocklisting, and regex-based output scanning.
 
-              **Lab 12 — RAG Pipeline with Claude API (OWASP LLM01, LLM02, LLM07, LLM08)**
-              Builds a production-style RAG pipeline combining the TF-IDF vector store from Lab 6 with the Claude API from Lab 11. Demonstrates grounded Q&A, knowledge boundary enforcement, and poisoning attack defense with source filtering. Shows how RAG reduces hallucination risk while remaining an attack surface that requires its own security controls.
+**Lab 8 — Insecure Output Handling (OWASP LLM02)**
+Shows how unsanitized LLM output becomes a delivery mechanism for XSS, SQL injection, and command injection attacks against downstream systems. Implements per-system defenses — HTML escaping, SQL sanitization, and shell metachar stripping — and demonstrates why every integration point requires its own output controls.
 
-              ## OWASP Coverage
+**Lab 9 — Model Denial of Service (OWASP LLM04)**
+Simulates resource exhaustion attacks against an unsafe LLM handler — oversized inputs, repetitive patterns, and request flooding — then implements five layered defenses: input length limiting, token limiting, repetition detection, rate limiting, and cost tracking. Demonstrates that LLM DoS is financial as well as operational, with a single crafted request costing orders of magnitude more than a normal one.
 
-              | OWASP LLM Risk | Labs |
-              |----------------|------|
-              | LLM01: Prompt Injection | Lab 1, Lab 2, Lab 12 |
-              | LLM02: Sensitive Information Disclosure / Insecure Output Handling | Lab 7, Lab 8, Lab 12 |
-              | LLM03: Supply Chain | Lab 4 |
-              | LLM04: Model Denial of Service | Lab 9 |
-              | LLM06: Sensitive Information Disclosure / Excessive Agency | Lab 2, Lab 3, Lab 5 |
-              | LLM07: Insecure Plugin Design | Lab 10, Lab 12 |
-              | LLM08: Vector and Embedding Weaknesses | Lab 6, Lab 12 |
+**Lab 10 — Insecure Plugin/Tool Use (OWASP LLM07)**
+Demonstrates attacks against unsecured LLM tools (web search, code executor, email sender) — malicious result injection, system command execution, and unauthorized data exfiltration — then implements per-tool defenses: output scanning, blocked pattern lists, and domain allowlisting. Shows that securing the LLM itself is not enough; every tool integration point requires its own validation layer.
 
-              ## Prerequisites
+**Lab 11 — Claude API Basics (Anthropic SDK)**
+Builds a working Claude API integration using the Anthropic SDK. Demonstrates single message requests, multi-turn conversations with system prompts, and structured output for security analysis. Covers token usage tracking and cost estimation — the foundation for all subsequent API-based labs.
 
-              - Python 3.10+
-              - - Kali Linux (or any Linux environment; WSL on Windows works)
-                - - Internet connection (Lab 1 only — downloads DeBERTa model ~700MB on first run)
-                  - - Labs 1–2: `pip install transformers torch sentencepiece protobuf`
-                    - - Lab 3: `sudo apt install -y wireshark`
-                      - - Lab 4: `pip install pip-audit`
-                        - - Labs 5–10: No external dependencies (Python stdlib only)
-                          - - Labs 11–12: `pip install anthropic numpy scikit-learn` + `ANTHROPIC_API_KEY` environment variable
-                           
-                            - ## Repository Structure
-                           
-                            - ```
-                              ai-security-lab/
-                              ├── GUIDE.md                  # Lab 1: Prompt Injection Detection setup guide
-                              ├── agent.py                  # Lab 1: Prompt injection detector script
-                              ├── test_prompts.txt          # Lab 1: Test prompt inputs
-                              ├── llm-guardrails-lab/       # Lab 2: LLM guardrails pipeline
-                              ├── lab3-network-analysis/    # Lab 3: Network traffic analysis
-                              ├── lab4-supply-chain/        # Lab 4: Supply chain security audit
-                              ├── lab5-excessive-agency/    # Lab 5: Excessive agency demo
-                              ├── lab6-vector-security/     # Lab 6: Vector/embedding security
-                              ├── lab7-data-extraction/     # Lab 7: Model inversion & data extraction
-                              ├── lab8-insecure-output/     # Lab 8: Insecure output handling
-                              ├── lab9-model-dos/           # Lab 9: Model denial of service
-                              ├── lab10-insecure-plugins/   # Lab 10: Insecure plugin/tool use
-                              ├── lab11-claude-api/         # Lab 11: Claude API basics (Anthropic SDK)
-                              ├── lab12-rag-pipline/        # Lab 12: RAG pipeline with Claude API
-                              └── README.md                 # This file
-                              ```
+**Lab 12 — RAG Pipeline with Claude API (OWASP LLM01, LLM02, LLM07, LLM08)**
+Builds a production-style RAG pipeline combining the TF-IDF vector store from Lab 6 with the Claude API from Lab 11. Demonstrates grounded Q&A, knowledge boundary enforcement, and poisoning attack defense with source filtering. Shows how RAG reduces hallucination risk while remaining an attack surface that requires its own security controls.
+
+## OWASP Coverage
+
+| OWASP LLM Risk | Labs |
+|----------------|------|
+| LLM01: Prompt Injection | Lab 1, Lab 2, Lab 12 |
+| LLM02: Sensitive Information Disclosure / Insecure Output Handling | Lab 7, Lab 8, Lab 12 |
+| LLM03: Supply Chain | Lab 4 |
+| LLM04: Model Denial of Service | Lab 9 |
+| LLM06: Sensitive Information Disclosure / Excessive Agency | Lab 2, Lab 3, Lab 5 |
+| LLM07: Insecure Plugin Design | Lab 10, Lab 12 |
+| LLM08: Vector and Embedding Weaknesses | Lab 6, Lab 12 |
+
+## Prerequisites
+
+- Python 3.10+
+- Kali Linux (or any Linux environment; WSL on Windows works)
+- Internet connection (Lab 1 only — downloads DeBERTa model ~700MB on first run)
+- Labs 1-2: `pip install transformers torch sentencepiece protobuf`
+- Lab 3: `sudo apt install -y wireshark`
+- Lab 4: `pip install pip-audit`
+- Labs 5-10: No external dependencies (Python stdlib only)
+- Labs 11-12: `pip install anthropic numpy scikit-learn` + `ANTHROPIC_API_KEY` environment variable
+
+## Repository Structure
+
+```
+ai-security-lab/
+├── GUIDE.md                  # Lab 1: Prompt Injection Detection setup guide
+├── agent.py                  # Lab 1: Prompt injection detector script
+├── test_prompts.txt          # Lab 1: Test prompt inputs
+├── llm-guardrails-lab/       # Lab 2: LLM guardrails pipeline
+├── lab3-network-analysis/    # Lab 3: Network traffic analysis
+├── lab4-supply-chain/        # Lab 4: Supply chain security audit
+├── lab5-excessive-agency/    # Lab 5: Excessive agency demo
+├── lab6-vector-security/     # Lab 6: Vector/embedding security
+├── lab7-data-extraction/     # Lab 7: Model inversion & data extraction
+├── lab8-insecure-output/     # Lab 8: Insecure output handling
+├── lab9-model-dos/           # Lab 9: Model denial of service
+├── lab10-insecure-plugins/   # Lab 10: Insecure plugin/tool use
+├── lab11-claude-api/         # Lab 11: Claude API basics (Anthropic SDK)
+├── lab12-rag-pipline/        # Lab 12: RAG pipeline with Claude API
+└── README.md                 # This file
+```
