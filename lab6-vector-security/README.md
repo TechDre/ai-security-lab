@@ -1,11 +1,27 @@
-[README.md](https://github.com/user-attachments/files/26600615/README.md)
 # Lab 6: Vector/Embedding Security (OWASP LLM08)
 
 ## Environment
-- OS: Kali Linux (WSL on Windows 10)
-- Language: Python 3.13
-- Libraries: numpy, scikit-learn (TF-IDF vectorization)
-- Date: 2026-04-07
+
+| Property | Value |
+|----------|-------|
+| OS | Kali Linux (WSL on Windows 10) |
+| Language | Python 3.13 |
+| Libraries | numpy, scikit-learn (TF-IDF vectorization) |
+| Date | 2026-04-07 |
+
+## Table of Contents
+
+- [Objective](#objective)
+- [Background](#background)
+- [System Design](#system-design)
+- [Phase 1 — Normal RAG System](#phase-1--normal-rag-system)
+- [Phase 2 — Vector Poisoning Attack](#phase-2--vector-poisoning-attack)
+- [Phase 3 — Defense: Trusted Source Filtering](#phase-3--defense-trusted-source-filtering)
+- [Security Observations](#security-observations)
+- [Key Takeaways](#key-takeaways)
+- [OWASP LLM08: Vector and Embedding Weaknesses](#owasp-llm08-vector-and-embedding-weaknesses)
+- [Defensive Recommendations](#defensive-recommendations)
+- [Commands Reference](#commands-reference)
 
 ## Objective
 Demonstrate OWASP LLM08 (Vector and Embedding Weaknesses) by
@@ -29,18 +45,11 @@ returns — even directing users to malicious destinations.
 - Injecting malicious instructions into a RAG-powered chatbot
 - Keyword stuffing to outrank legitimate documents in retrieval
 
----
-
 ## System Design
 
 ```
-User Question
-    → Vectorize query (TF-IDF)
-    → Compare against all document vectors (cosine similarity)
-    → Return highest scoring document as answer
+User Question → Vectorize query (TF-IDF) → Compare against all document vectors (cosine similarity) → Return highest scoring document as answer
 ```
-
----
 
 ## Phase 1 — Normal RAG System
 
@@ -53,9 +62,9 @@ Loaded trusted knowledge base with 3 documents:
 
 **Result:**
 ```
-[Source: trusted | Score: 0.601] To reset your password go to
-Settings then Security then Reset Password.
+[Source: trusted | Score: 0.601] To reset your password go to Settings then Security then Reset Password.
 ```
+
 Correct answer returned from trusted source.
 
 ---
@@ -63,6 +72,7 @@ Correct answer returned from trusted source.
 ## Phase 2 — Vector Poisoning Attack
 
 ### Attack Method: Keyword Stuffing
+
 Attacker injects a document crafted with repeated target keywords
 to outscore the legitimate document in similarity ranking.
 
@@ -97,8 +107,8 @@ would be directed to send their password to an attacker.
 
 ## Phase 3 — Defense: Trusted Source Filtering
 
-Filter retrieved documents to only return results from
-trusted sources, regardless of similarity score.
+Filter retrieved documents to only return results from trusted
+sources, regardless of similarity score.
 
 ```python
 def safe_rag_answer(store, question, trusted_sources=["trusted"]):
@@ -111,8 +121,7 @@ def safe_rag_answer(store, question, trusted_sources=["trusted"]):
 
 **Result:**
 ```
-[Source: trusted] To reset your password go to Settings then
-Security then Reset Password.
+[Source: trusted] To reset your password go to Settings then Security then Reset Password.
 
 [+] Trusted source filter blocked the poisoned document regardless of score!
 ```
@@ -155,15 +164,15 @@ This lab demonstrates the core risk of **OWASP LLM08**:
 
 - RAG knowledge bases are an attack surface if write access
   is not strictly controlled
-- Vector similarity is not a security control — it is a
-  relevance metric that can be gamed
-- Poisoned embeddings can persist silently until triggered
-  by a matching query
+- Vector similarity is not a security control — it is a relevance
+  metric that can be gamed
+- Poisoned embeddings can persist silently until triggered by
+  a matching query
 
 ### Connection to Other Labs
 
 | Lab | Connection |
-|-----|------------|
+|-----|-----------|
 | Lab 1 (Prompt Injection) | Injected docs can contain prompt injection payloads |
 | Lab 2 (Guardrails) | Output guardrails catch poisoned answers before delivery |
 | Lab 4 (Supply Chain) | Poisoning a shared vector DB is a supply chain attack |
@@ -185,8 +194,8 @@ This lab demonstrates the core risk of **OWASP LLM08**:
 ## Commands Reference
 ```bash
 # Set up environment
-python3 -m venv ~/lab4-env
-source ~/lab4-env/bin/activate
+python3 -m venv ~/lab6-env
+source ~/lab6-env/bin/activate
 pip install numpy scikit-learn
 
 # Run the lab
