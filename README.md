@@ -20,16 +20,16 @@ A hands-on AI security engineering learning lab covering prompt injection detect
        
         - | Lab | Topic | OWASP Reference | Folder |
         - |-----|-------|----------------|--------|
-        - | Lab 1 | Prompt Injection Detection | LLM01 | GUIDE.md |
-        - | Lab 2 | LLM Guardrails (Input/Output Validation) | LLM01, LLM06 | llm-guardrails-lab/ |
-        - | Lab 3 | Network Traffic Analysis with TShark | LLM06 | lab3-network-analysis/ |
-        - | Lab 4 | Supply Chain Security with pip-audit | LLM03 | lab4-supply-chain/ |
-        - | Lab 5 | Excessive Agency | LLM06 | lab5-excessive-agency/ |
-        - | Lab 6 | Vector/Embedding Security (RAG Poisoning) | LLM08 | lab6-vector-security/ |
-        - | Lab 7 | Model Inversion & Data Extraction | LLM02 | lab7-data-extraction/ |
-        - | Lab 8 | Insecure Output Handling | LLM02 | lab8-insecure-output/ |
-        - | Lab 9 | Model Denial of Service | LLM04 | lab9-model-dos/ |
-        - | Lab 10 | Insecure Plugin/Tool Use | LLM07 | lab10-insecure-plugins/ |
+        - | Lab 1 | Prompt Injection Detection | LLM01 | [GUIDE.md](GUIDE.md) |
+        - | Lab 2 | LLM Guardrails (Input/Output Validation) | LLM01, LLM06 | [llm-guardrails-lab/](llm-guardrails-lab/) |
+        - | Lab 3 | Network Traffic Analysis with TShark | LLM06 | [lab3-network-analysis/](lab3-network-analysis/) |
+        - | Lab 4 | Supply Chain Security with pip-audit | LLM03 | [lab4-supply-chain/](lab4-supply-chain/) |
+        - | Lab 5 | Excessive Agency | LLM06 | [lab5-excessive-agency/](lab5-excessive-agency/) |
+        - | Lab 6 | Vector/Embedding Security (RAG Poisoning) | LLM08 | [lab6-vector-security/](lab6-vector-security/) |
+        - | Lab 7 | Model Inversion & Data Extraction | LLM02 | [lab7-data-extraction/](lab7-data-extraction/) |
+        - | Lab 8 | Insecure Output Handling | LLM02 | [lab8-insecure-output/](lab8-insecure-output/) |
+        - | Lab 9 | Model Denial of Service | LLM04 | [lab9-model-dos/](lab9-model-dos/) |
+        - | Lab 10 | Insecure Plugin/Tool Use | LLM07 | [lab10-insecure-plugins/](lab10-insecure-plugins/) |
        
         - **Lab 1 — Prompt Injection Detection (OWASP LLM01)**
        
